@@ -42,6 +42,8 @@ class GetSentences extends Component {
       
       return (
         <Layout>
+        <section id ="homie">
+        <div className="container">
         <div className="homepg">
             <form onSubmit={this.getUser} className="myForm"><br/>
                 <label className="par">
@@ -56,6 +58,8 @@ class GetSentences extends Component {
             You may go to your personal quiz at any time by clicking your name in upper right corner.<br/>
             <ol className="list" >{list}</ol><br/></div> : <p className="par">You must enter a word in all lower cap.</p>}
         </div>
+        </div>
+        </section>
         </Layout>
       );
     }

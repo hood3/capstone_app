@@ -41,7 +41,7 @@ class Quiz extends Component {
     return answer
   }
 
-  shuffle(arr){
+  shuffle(arr){  // This function shuffles array in place using temporary variable. 
     let arrayLen = arr.length
     for (let i=0;i<arrayLen;i++){
       let first = Math.floor(Math.random()*100) % arrayLen

@@ -120,6 +120,13 @@
   text-align: center;
   background-color: lightskyblue;
   background-size:cover;
+  background-position: center;
+}
+
+#homie{
+  background-color: lightskyblue;
+  background-size:cover;
+  background-position: center;
 }
 
 .quiz{
