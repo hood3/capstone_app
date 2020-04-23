@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import CardList from './CardList';
+import AnswersList from './AnswersList';
 import axios from "axios";
-import Rank from './Rank';
+import {isAuth} from '../RegisterLogin/helpers';
 import Layout from '../Layout';
 import '../myStyles/App.css';
 
@@ -15,8 +15,8 @@ class Quiz extends Component {
         allQuestions: [],
         quiz:{question:"", answer:"", choices:[]},
         doMakeNext: false 
-      }
-    }      
+      }      
+    }  
 
   componentDidMount(){    
     console.log("Mounted")    
@@ -78,23 +78,19 @@ class Quiz extends Component {
 
   goNextQuiz = (response) => {
     this.setState({doMakeNext:response})
-  }  
+  } 
 
   incrementScore = (correct) => {
+  	let score = this.state.score;
     if(correct) {
-      this.setState({score:this.state.score + 1})
+      score += 1;
     }
     else {
-      this.setState({score: this.state.score - 1})
-    }   
-    this.scoreSave(); 
-  }
-
-  scoreSave = () => {
-    axios.post('http://localhost:5000/api/user', {                   
-         score:this.state.score                     
-      });          
-    }        
+      score -= 1;
+    }
+    localStorage.setItem('score', score);  
+    this.setState({score: score})      
+  }  
 
   render() {
     if (this.state.doMakeNext){
@@ -104,14 +100,15 @@ class Quiz extends Component {
 
       return (
         <Layout>
-        <div className='quiz'>
-          Click on the correct answer.
-          <Rank
-                name={this.state.name}
-                score={this.state.score}
-              />
-              The Word Is:
-         <CardList 
+          <div className='quiz'>
+          <div className="scores">
+                {`Welcome ${isAuth().name}!!, your current score is: `}
+            </div>
+            <div className="scores">
+                {this.state.score}  
+            </div>             
+          Click on the correct answer.<br/>The Word Is:
+         <AnswersList 
          question={this.state.quiz.question} 
          choices={this.state.quiz.choices}
          answer={this.state.quiz.answer}

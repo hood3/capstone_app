@@ -7,15 +7,13 @@ import Quiz from './WordsQuiz/Quiz';
 import PrivateRoute from './RegisterLogin/PrivateRoute';
 import Forgot from './RegisterLogin/Forgot';
 import Reset from './RegisterLogin/Reset';
-import Exit from './RegisterLogin/Exit';
 
 const Routes = () => {
     return (
         <BrowserRouter>
             <Switch>
                 <Route path="/" exact component={App} />    
-                <Route path="/GetSentences" exact component={GetSentences} /> 
-                <Route path="/Exit" exact component={Exit} />                                   
+                <Route path="/GetSentences" exact component={GetSentences} />                                             
                 <Route path="/auth/activate/:token" exact component={Activate} />   
                 <PrivateRoute path="/Quiz" exact component={Quiz} />  
                 <Route path="/auth/password/forgot" exact component={Forgot} />      

@@ -15,10 +15,10 @@ class GetSentences extends Component {
     getUser = (e) => {
       e.preventDefault();
       const user = e.target.elements.username.value;
-      const myKey = process.env.REACT_APP_WORDS_KEY;
-      if (user) {
-        let url= `https://wordsapiv1.p.mashape.com/words/${user}/examples`          
-        let config = {headers:{"X-Mashape-Key":myKey}}
+      const mykey = process.env.REACT_APP_WORDS_KEY;      
+      if (user) {        
+        let url= `https://wordsapiv1.p.rapidapi.com/words/${user}/examples`          
+        let config = {headers:{"X-Mashape-Key":mykey}}
         axios.get(url,config)
         .then((res) => {
           const sentences = res.data.examples;
@@ -52,11 +52,12 @@ class GetSentences extends Component {
                 </label>
                 <button className="btn10">Submit to Library</button>
             </form>
-            <p className="par">Please enter a English word in all lower caps </p>
+            <p className="par">Please enter a English word in all lower caps<br/>Click on 
+            each and every sentence you wish to save to your quiz.<br/>You may go to your
+            personal quiz at any time by clicking your name in upper right corner.<br/></p>
             {this.state.sentences ? <div className="par">Word: {this.state.word}<br/>
-            Sentences:<br/>Click on each and every sentence you wish to save to your quiz.<br/>
-            You may go to your personal quiz at any time by clicking your name in upper right corner.<br/>
-            <ol className="list" >{list}</ol><br/></div> : <p className="par">You must enter a word in all lower cap.</p>}
+            Sentences:<br/><ol className="list" >{list}</ol><br/></div> : <p className="par">
+            You must enter a word in all lower cap.</p>}
         </div>
         </div>
         </section>

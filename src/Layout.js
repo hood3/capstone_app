@@ -40,16 +40,7 @@ const Layout = ({ children,match,history }) => {
                         </Link>
                     </li>
                 </Fragment>
-            )}                  
-             {isAuth() && (
-                <Fragment>
-                    <li className="nav-item">
-                        <Link to="/Exit" className="nav-link" style={isActive('/Exit')}>
-                            Exit Quiz
-                        </Link>
-                    </li>
-                </Fragment>
-            )}                  
+            )}           
             {isAuth() && (
                 <li className="nav-item">
                     <span className="nav-link" style={{curser:'pointer',color:'#000'}} onClick={() => {

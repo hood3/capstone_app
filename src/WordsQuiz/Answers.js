@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Card = ({ choice, getResponse}) => { 
+const Answers = ({ choice, getResponse}) => { 
   const clickHandler = () => {   
     getResponse(choice);   
   }
@@ -12,4 +12,4 @@ const Card = ({ choice, getResponse}) => {
   );
 }
 
-export default Card;
+export default Answers;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Card from './Card';
+import Answers from './Answers';
 
-class CardList extends Component {
+class AnswersList extends Component {
     constructor(props) {
       super(props)
       this.state = {
@@ -56,7 +56,7 @@ class CardList extends Component {
           {
             choices.map((choice, i) => {
               return (
-              <Card key={i} choice={choice} getResponse={this.getResponse} />
+              <Answers key={i} choice={choice} getResponse={this.getResponse} />
               );
             })
           }
@@ -66,4 +66,4 @@ class CardList extends Component {
   }
 }
 
-export default CardList;
+export default AnswersList;
