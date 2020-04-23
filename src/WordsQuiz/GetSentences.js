@@ -29,12 +29,12 @@ class GetSentences extends Component {
       } else return;
     }
 
-    onSubmitSave = (e) => {            
-       axios.post('http://localhost:5000/api/items', {                   
-         word:this.state.word,
-         sentence:e.target.innerText                  
-      });          
-    }      
+    onSubmitSave = (e) => {               
+      axios.post('http://localhost:5000/api/items', {                   
+        word:this.state.word,
+        sentence:e.target.innerText                  
+     });          
+   }      
 
     render() {   
       const list = this.state.sentences.map(examples => <li key={examples} onClick={this.onSubmitSave}  

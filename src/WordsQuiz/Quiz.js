@@ -10,13 +10,14 @@ class Quiz extends Component {
       super()
       this.state = {     
         name:'',
-        score:0,       
+        score:0, 
+        saveScore:'',      
         quizSet:[],
         allQuestions: [],
         quiz:{question:"", answer:"", choices:[]},
         doMakeNext: false 
       }      
-    }  
+    };   
 
   componentDidMount(){    
     console.log("Mounted")    
@@ -95,7 +96,7 @@ class Quiz extends Component {
   render() {
     if (this.state.doMakeNext){
       this.makeOneQuiz()
-      this.setState({doMakeNext:false})
+      this.setState({doMakeNext:false})      
     }
 
       return (
@@ -112,9 +113,9 @@ class Quiz extends Component {
          question={this.state.quiz.question} 
          choices={this.state.quiz.choices}
          answer={this.state.quiz.answer}
-         incrementScore={this.incrementScore}
-         goNextQuiz={this.goNextQuiz}
-         />
+         incrementScore={this.incrementScore}        
+         goNextQuiz={this.goNextQuiz}       
+         />       
         </div>
         </Layout>
       );
