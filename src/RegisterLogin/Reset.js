@@ -21,7 +21,7 @@ const Reset = ({ match }) => {
         if (token) {//Once token decoded set all values
             setValues({ ...values, name, token });
         }
-    }, [match.params.token, values]);//Use effect will run whenever values change
+    }, []);//Use effect will run whenever values change
 
     const { name, token, newPassword, buttonText } = values;//Destructuring values
 

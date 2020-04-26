@@ -19,7 +19,7 @@ const Activate = ({match}) => {//Props match gives the route parameter
         if (token) {//If i have a token, update the state of all values
             setValues({ ...values, name, token });
         }
-    }, [match.params.token, values]);
+    }, []);
 
     const { name, token } = values;
 
