@@ -14,34 +14,35 @@ const Reset = ({ match }) => {
         buttonText: 'Reset password'
     });
 
+    //After component mounts grab the token 
     useEffect(() => {
-        let token = match.params.token;
-        let { name } = jwt.decode(token);         
-        if (token) {
+        let token = match.params.token;//Grab the token from the route parameters
+        let { name } = jwt.decode(token); //Decode the token for users name        
+        if (token) {//Once token decoded set all values
             setValues({ ...values, name, token });
         }
-    }, [match.params.token, values]);
+    }, [match.params.token, values]);//Use effect will run whenever values change
 
-    const { name, token, newPassword, buttonText } = values;
+    const { name, token, newPassword, buttonText } = values;//Destructuring values
 
-    const handleChange = event => {
-        setValues({ ...values, newPassword: event.target.value });
+    const handleChange = event => {//Function to grab input values on change
+        setValues({ ...values, newPassword: event.target.value });//Set newpassword value
     };
 
     const clickSubmit = event => {
-        event.preventDefault();
-        setValues({ ...values, buttonText: 'Submitting' });
-        axios({
+        event.preventDefault();//Prevent page from reloading
+        setValues({ ...values, buttonText: 'Submitting' });//Set state values
+        axios({//Update users password to new password
             method: 'PUT',
             url: `${process.env.REACT_APP_API}/reset-password`,
-            data: { newPassword, resetPasswordLink: token }
+            data: { newPassword, resetPasswordLink: token }//Saves new token
         })
-            .then(response => {
+            .then(response => {//Success response
                 console.log('RESET PASSWORD SUCCESS', response);
                 toast.success(response.data.message);
                 setValues({ ...values, buttonText: 'Done' });
             })
-            .catch(error => {
+            .catch(error => {//Any error response
                 console.log('RESET PASSWORD ERROR', error.response.data);
                 toast.error(error.response.data.error);
                 setValues({ ...values, buttonText: 'Reset password' });

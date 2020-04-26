@@ -69,13 +69,3 @@ export const signout = next => {//Remove all cookie and localstorage values on s
     next();//next callback so I can redirect  
 };
 
-export const updateUser = (response, next) => {
-    console.log('UPDATE USER IN LOCALSTORAGE HELPERS', response);
-    if (typeof window !== 'undefined') {
-        let auth = JSON.parse(localStorage.getItem('user'));
-        auth = response.data;
-        localStorage.setItem('user', JSON.stringify(auth));
-    }
-
-    next();
-};
