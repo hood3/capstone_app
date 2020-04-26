@@ -5,7 +5,7 @@ import {isAuth} from '../RegisterLogin/helpers';
 import Layout from '../Layout';
 import '../myStyles/App.css';
 
-class Quiz extends Component {
+class Quiz extends Component {//Constructor sets the state of all values
     constructor() {
       super()
       this.state = {     
@@ -19,41 +19,44 @@ class Quiz extends Component {
       }      
     };   
 
-  componentDidMount(){    
+  componentDidMount(){ //Retrieves all words and sentences from the database   
     console.log("Mounted")    
-    axios.get('http://localhost:5000/api/items')
+    axios.get(`${process.env.REACT_APP_API}/items`)//I prefer using axios to fetch
       .then((res) => {
-        console.log(res);
-        const allQuestions = res.data.map(item => item.word);
-        this.shuffle(allQuestions)
-        this.setState({ quizSet: res.data, allQuestions: allQuestions });
-        this.setState({ quizSet: res.data });
-        this.makeOneQuiz()
+        console.log(res);  //Displays response in console
+        const allQuestions = res.data.map(item => item.word);//Iterate thru all sentences for that word
+        this.shuffle(allQuestions)//Invokes shuffle function for allQuestions array
+        this.setState({ quizSet: res.data, allQuestions: allQuestions });//Sets the state of 
+        //array quizset and allQuestions with shuffled questions
+        this.setState({ quizSet: res.data });//Sets quizSet array with shuffled questions
+        this.makeOneQuiz()//Invokes the makeOneQuiz function
       })      
   } 
 
-  getAnswer(question){
+  getAnswer(question){//Function to chose right sentence for correct word
     let answer;
-    this.state.quizSet.forEach(element => {
-      if (element.word === question){
-        answer = element.sentence
+    this.state.quizSet.forEach(element => {//Iterates thru quizset array for sentence that
+      //goes with appropriate word in database
+      if (element.word === question){//When word element equals sentence, set answer to 
+        //sentence element 
+        answer = element.sentence//Sets answer to correct sentence
       }
     });
     return answer
   }
 
   shuffle(arr){  // This function shuffles array in place using temporary variable. 
-    let arrayLen = arr.length
-    for (let i=0;i<arrayLen;i++){
+    let arrayLen = arr.length//Using variable for array length
+    for (let i=0;i<arrayLen;i++){//Iterating thru array
       let first = Math.floor(Math.random()*100) % arrayLen
       let second = Math.floor(Math.random()*100) % arrayLen
-      let temp = arr[first]
-      arr[first] = arr[second]
-      arr[second] = temp
+      let temp = arr[first]//Set temp to first array
+      arr[first] = arr[second]//Set first to second
+      arr[second] = temp//Set second to temp
     }   
   }
 
-  getChoices(question) {
+  getChoices(question) {//Function to display 4 choices for word on UI
     let tempQuizSet = this.state.quizSet.filter(q => q.word !== question);
     this.shuffle(tempQuizSet);
     let choices = [];
@@ -69,7 +72,7 @@ class Quiz extends Component {
     return choices;
   }
 
-  makeOneQuiz(){
+  makeOneQuiz(){//Function to set array with 3 wrong and one right sentence for word
     let question = this.state.allQuestions.pop();
     let answer = this.getAnswer(question);
     let choices = this.getChoices(question);
@@ -77,24 +80,24 @@ class Quiz extends Component {
     this.setState({quiz:{question:question, answer:answer, choices:choices}})
   }
 
-  goNextQuiz = (response) => {
+  goNextQuiz = (response) => {//Function to repeat quiz after button is clicked
     this.setState({doMakeNext:response})
   } 
 
-  incrementScore = (correct) => {
-  	let score = this.state.score;
-    if(correct) {
+  incrementScore = (correct) => {//Function for score keeping
+  	let score = this.state.score;//Set the state of score
+    if(correct) {//If correct add one to score
       score += 1;
     }
     else {
-      score -= 1;
+      score -= 1;//If wrong subtract one from score
     }
-    localStorage.setItem('score', score);  
-    this.setState({score: score})      
+    localStorage.setItem('score', score);  //Set score in localStorage
+    this.setState({score: score})  //Set the state of score    
   }  
 
   render() {
-    if (this.state.doMakeNext){
+    if (this.state.doMakeNext){//If doMakeNext is true set to false and invoke new quiz function
       this.makeOneQuiz()
       this.setState({doMakeNext:false})      
     }

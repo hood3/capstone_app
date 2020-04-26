@@ -3,7 +3,7 @@ import axios from "axios";
 import Layout from '../Layout';
 import '../myStyles/App.css';
 
-class GetSentences extends Component {
+class GetSentences extends Component {//Constructor sets state of values
   constructor(props) {
     super(props);
     this.state = {
@@ -12,33 +12,33 @@ class GetSentences extends Component {
     }
   } 
     
-    getUser = (e) => {
-      e.preventDefault();
-      const user = e.target.elements.username.value;
-      const mykey = process.env.REACT_APP_WORDS_KEY;      
-      if (user) {        
+    getUser = (e) => {//Gets the word input into text form from user
+      e.preventDefault();//Prevents page from reloading after button is clicked
+      const user = e.target.elements.username.value;//Sets user to word entered
+      const mykey = process.env.REACT_APP_WORDS_KEY; //Sets mykey to env variable     
+      if (user) {  //If a word is entered, submits word to words api      
         let url= `https://wordsapiv1.p.rapidapi.com/words/${user}/examples`          
-        let config = {headers:{"X-Mashape-Key":mykey}}
+        let config = {headers:{"X-Mashape-Key":mykey}}//Sends key with url
         axios.get(url,config)
         .then((res) => {
-          const sentences = res.data.examples;
-          const word = res.data.word;          
-          this.setState({ sentences });
-          this.setState({word});
+          const sentences = res.data.examples;//Gets example sentences from word api
+          const word = res.data.word; //Gets word from word api(same as word entered by user)         
+          this.setState({ sentences });//Set state with sentences object
+          this.setState({word});//Sets state with word
         })
       } else return;
     }
 
-    onSubmitSave = (e) => {               
-      axios.post('http://localhost:5000/api/items', {                   
+    onSubmitSave = (e) => {// Saves example sentences that are clicked on to my database               
+      axios.post(`${process.env.REACT_APP_API}/items`, { // Post word and sentences to endpoint                  
         word:this.state.word,
         sentence:e.target.innerText                  
      });          
    }      
 
-    render() {   
+    render() { //Iterates thru sentences object to display each on UI  
       const list = this.state.sentences.map(examples => <li key={examples} onClick={this.onSubmitSave}  
-        >{examples}.</li>)
+        >{examples}.</li>)//Any sentence is clicked on, Invokes onSubmitSave function 
       
       return (
         <Layout>

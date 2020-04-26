@@ -1,27 +1,27 @@
-import React, { useState } from 'react';
-import loginImg from "../assets/login.svg";
+import React, { useState } from 'react';//For react state hook
+import loginImg from "../assets/login.svg";//Google image
 import "../myStyles/style.scss";
 import axios from "axios";
-import {ToastContainer,toast} from 'react-toastify';
+import {ToastContainer,toast} from 'react-toastify';//For elegant alerts
 import 'react-toastify/dist/ReactToastify.min.css';
 
 const Register = () => {
-   const [values,setValues] = useState ({
+   const [values,setValues] = useState ({//State object values with method setValues
     name:'',
     email:'',
     password:'',
-    buttonText:'Register'
+    buttonText:'Register'//Button text will change during events
   });
 
   const {name,email,password,buttonText} = values; // Destructured to save typing
 
-  const handleChange = name => event => {   
-    setValues({ ...values, [name]: event.target.value });
+  const handleChange = name => event => {   //Function to grab input values on change
+    setValues({ ...values, [name]: event.target.value });//and set the state with values
 };
 
 const clickSubmit = event => { //Events from button being clicked
   event.preventDefault(); //Keep page from reloading
-  setValues({ ...values, buttonText: 'Registering' }); // change button value while submitting
+  setValues({ ...values, buttonText: 'Registering' }); // Change button value while submitting
   axios({  //Sending to server
       method: 'POST',
       url: `${process.env.REACT_APP_API}/signup`,  //Server url
@@ -30,7 +30,7 @@ const clickSubmit = event => { //Events from button being clicked
       .then(response => { //Response 
           console.log('SIGNUP SUCCESS', response); //Console log response
           setValues({ ...values, name: '', email: '', password: '', buttonText: 'Registered' }); //Clearing values after sending
-          toast.success(response.data.message); //Show response on UI
+          toast.success(response.data.message); //Show response on UI as alert
       })
       .catch(error => { //Catch any errors
           console.log('SIGNUP ERROR', error.response.data);//Console log any error msg from server
@@ -39,7 +39,7 @@ const clickSubmit = event => { //Events from button being clicked
       });
 };
 
-const signupForm = () => (
+const signupForm = () => (//Method containing the Registration form
   <form>
       <div className="form-group">
           <label className="text-black-150 font-weight-bold">Name</label>
@@ -75,6 +75,5 @@ const signupForm = () => (
       </div>
     );
 }
- 
 
 export default Register;

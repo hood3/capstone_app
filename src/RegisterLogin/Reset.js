@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.min.css';
 
 const Reset = ({ match }) => {
     // Props.match from react router dom
-    const [values, setValues] = useState({
+    const [values, setValues] = useState({//Sets all state values 
         name: '',
         token: '',
         newPassword: '',
@@ -20,7 +20,7 @@ const Reset = ({ match }) => {
         if (token) {
             setValues({ ...values, name, token });
         }
-    }, []);
+    }, [match.params.token, values]);
 
     const { name, token, newPassword, buttonText } = values;
 

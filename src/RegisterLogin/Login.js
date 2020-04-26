@@ -7,22 +7,22 @@ import {authenticate, isAuth} from './helpers';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
-const Login = () => {
+const Login = () => {// Sets the state of values using useState
   const [values,setValues] = useState ({  
    email:'',
    password:'',
    buttonText:'SignIn'
  });
 
- const {email,password,buttonText} = values; // Destructured to save typing
+ const {email,password,buttonText} = values; // Destructured values to save typing
 
- const handleChange = name => event => {   
-   setValues({ ...values, [name]: event.target.value });
+ const handleChange = name => event => {   //Function to grab input values on change
+   setValues({ ...values, [name]: event.target.value });//Sets the state with values
 };
 
 const clickSubmit = event => { //Events from button being clicked
  event.preventDefault(); //Keep page from reloading
- setValues({ ...values, buttonText: 'Signing-In' }); // change button value while submitting
+ setValues({ ...values, buttonText: 'Signing-In' }); // Change button value while submitting
  axios({  //Sending to server
      method: 'POST',
      url: `${process.env.REACT_APP_API}/signin`,  //Server url
@@ -37,8 +37,8 @@ const clickSubmit = event => { //Events from button being clicked
      });
   })   
      .catch(error => {          
-         setValues({ ...values, buttonText: 'SignIn' }); 
-         toast.error(error.response.data.error);
+         setValues({ ...values, buttonText: 'SignIn' });//Clears all values in state 
+         toast.error(error.response.data.error);//Catch and display any errors
      });
 };
 

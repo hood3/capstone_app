@@ -8,6 +8,7 @@ import PrivateRoute from './RegisterLogin/PrivateRoute';
 import Forgot from './RegisterLogin/Forgot';
 import Reset from './RegisterLogin/Reset';
 
+//My routes component to correspond to specific paths all wrapped inside browserrouter
 const Routes = () => {
     return (
         <BrowserRouter>

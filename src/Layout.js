@@ -1,22 +1,24 @@
-import React, { Fragment } from 'react';
-import './myStyles/App.css';
-import logo from './assets/logo.svg';
-import logo1 from './assets/logo.svg';
+import React, { Fragment } from 'react';//Fragment for multiple jsx elements like div
+import './myStyles/App.css';//My css sheet
+import logo from './assets/logo.svg';//React logo
+import logo1 from './assets/logo.svg';//React logo
 import { Link,withRouter } from 'react-router-dom';
 import { isAuth,signout } from './RegisterLogin/helpers';
 
+//My layout for header and navigation links in all of my components, anything wrapped inside 
+//my layout will be available as children props and can be rendered
 const Layout = ({ children,match,history }) => {  
     const isActive = path => {
-        if (match.path === path) {
+        if (match.path === path) {//Change the color for active page/link
             return { color: '#ff0000' };
         } else {
             return { color: '#000' };
         }
     };
 
-    const nav = () => (
+    const nav = () => ( //Navigation component links
         <ul className="nav nav-tabs bg-primary justify-content-end" >
-            {!isAuth() && (
+            {!isAuth() && (//Set the links shown on each page
                 <Fragment>
                     <li className="nav-item">
                         <Link to="/" className="nav-link" style={isActive('/')}>
