@@ -1,9 +1,9 @@
-import React from "react";
+import React, { Component } from 'react';
 import "../myStyles/log.scss";
 import Login from "./Login";
 import Register from "./Register";
 
-class Log extends React.Component {
+class Log extends Component {//Constructer sets the state of values and components children
   constructor(props) {
     super(props);
     this.state = {
@@ -11,13 +11,13 @@ class Log extends React.Component {
     };
   }
 
-  componentDidMount() {
+  componentDidMount() {//Animated button on right side when mounted
     //Add .right by default
     this.rightSide.classList.add("right");
   }
 
-  changeState() {
-    const { isLogginActive } = this.state;
+  changeState() {//Change the side of animated button according to its state
+    const { isLogginActive } = this.state;//Grab from state to change button side
 
     if (isLogginActive) {
       this.rightSide.classList.remove("right");
@@ -30,8 +30,8 @@ class Log extends React.Component {
   }
 
   render() {
-    const { isLogginActive } = this.state;
-    const current = isLogginActive ? "Register" : "SignIn";
+    const { isLogginActive } = this.state;//Extract from state if login is active 
+    const current = isLogginActive ? "Register" : "SignIn";//Display correct form in container
     const currentActive = isLogginActive ? "login" : "register";
     return (
       <div className="App">
