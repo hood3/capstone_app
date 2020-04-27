@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from "axios";
 import Layout from '../Layout';
 import '../myStyles/App.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 class GetSentences extends Component {//Constructor sets state of values
   constructor(props) {
@@ -32,8 +34,9 @@ class GetSentences extends Component {//Constructor sets state of values
     onSubmitSave = (e) => {// Saves example sentences that are clicked on to my database               
       axios.post(`${process.env.REACT_APP_API}/items`, { // Post word and sentences to endpoint                  
         word:this.state.word,
-        sentence:e.target.innerText                  
-     });          
+        sentence:e.target.innerText                      
+     });  
+     toast.success('Saved to the database !!');           
    }      
 
     render() { //Iterates thru sentences object to display each on UI  
@@ -43,6 +46,7 @@ class GetSentences extends Component {//Constructor sets state of values
       return (
         <Layout>
         <section id ="homie">
+        <ToastContainer />
         <div className="container">
         <div className="homepg">
             <form onSubmit={this.getUser} className="myForm"><br/>
