@@ -36,7 +36,7 @@ class GetSentences extends Component {//Constructor sets state of values
         word:this.state.word,
         sentence:e.target.innerText                      
      });  
-     toast.success('Saved to the database !!');           
+     toast.success('Saved to the database !!');            
    }      
 
     render() { //Iterates thru sentences object to display each on UI  
