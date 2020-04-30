@@ -3,7 +3,7 @@ import AnswersList from './AnswersList';
 import axios from "axios";
 import {isAuth} from '../RegisterLogin/helpers';
 import Layout from '../Layout';
-import '../myStyles/App.css';
+import '../myStyles/App.scss';
 
 class Quiz extends Component {//Constructor sets the state of all values
     constructor() {

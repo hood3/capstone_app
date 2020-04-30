@@ -64,8 +64,8 @@ const signupForm = () => (//Method containing the Registration form
     return (
       <div className="base-container">
          <ToastContainer />
-        <div className="header">Hood English App <br/>New user's must register with a valid email, 
-                            before signing in.<br/>Register</div>
+        <div className="header">Hood English App <br/>New users must register with a valid email 
+        before signing in.<br/>Register</div>
         <div className="content">
           <div className="image">
             <img src={loginImg} alt="logpic" />

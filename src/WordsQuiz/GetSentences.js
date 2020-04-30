@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from "axios";
 import Layout from '../Layout';
-import '../myStyles/App.css';
+import '../myStyles/App.scss';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
@@ -56,12 +56,12 @@ class GetSentences extends Component {//Constructor sets state of values
                 </label>
                 <button className="btn10">Submit to Library</button>
             </form>
-            <p className="par">Please enter a English word in all lower caps<br/>Click on 
+            <p className="par">Please enter an English word in all lower caps<br/>Click on 
             each and every sentence you wish to save to your quiz.<br/>You may go to your
-            personal quiz at any time by clicking your name in upper right corner.<br/></p>
+            personal quiz at any time by clicking your name in upper right hand corner.<br/></p>
             {this.state.sentences ? <div className="par">Word: {this.state.word}<br/>
             Sentences:<br/><ol className="list" >{list}</ol><br/></div> : <p className="par">
-            You must enter a word in all lower cap.</p>}
+            You must enter a word in all lower caps.</p>}
         </div>
         </div>
         </section>

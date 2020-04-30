@@ -64,7 +64,7 @@ const signinForm = () => (
       <div className="base-container">
          <ToastContainer />
          {isAuth() ? <Redirect to="/GetSentences" />: null}
-        <div className="header">Hood English App <br/>Existing user's may skip registering, and go straight to sign in.
+        <div className="header">Hood English App <br/>Existing users may skip registering and go straight to sign in.
         <br/>SignIn</div>
         <div className="content">
           <div className="image">

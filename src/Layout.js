@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';//Fragment for multiple jsx elements like div
-import './myStyles/App.css';//My css sheet
+import './myStyles/App.scss';//My css sheet
 import logo from './assets/logo.svg';//React logo
 import logo1 from './assets/logo.svg';//React logo
 import { Link,withRouter } from 'react-router-dom';
